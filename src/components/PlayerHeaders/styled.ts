@@ -26,7 +26,7 @@ export const CenterText = styled.h1`
 
 export const Player = styled.article`
   background-color: rgba(0, 0, 0, 0.7);
-  font-size: 30pt;
+  font-size: 27pt;
   display: grid;
   grid-template-columns: 1fr auto;
   color: white;
