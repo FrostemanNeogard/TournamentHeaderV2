@@ -46,6 +46,11 @@ export const PlayerDiv = styled.div`
   grid-template-columns: repeat(3, min-content);
   grid-template-rows: repeat(2, 1fr);
   justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+  }
 `;
 
 export const VerticalDivider = styled.div`
