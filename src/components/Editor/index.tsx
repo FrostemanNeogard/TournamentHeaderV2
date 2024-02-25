@@ -1,4 +1,4 @@
-import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { db } from "src/util/Firebase";
 import { PlayerData } from "src/_types/playerData";
@@ -16,9 +16,9 @@ const Editor = (props: { documentId: string }) => {
     console.error(`An error ocurred: ${error}`);
   }
 
-  const [playerOneData, setPlayerOneData] = useState<PlayerData>();
-  const [playerTwoData, setPlayerTwoData] = useState<PlayerData>();
-  const [centerTextState, setCenterTextState] = useState();
+  const [playerOneData, setPlayerOneData] = useState<PlayerData>(playerOne);
+  const [playerTwoData, setPlayerTwoData] = useState<PlayerData>(playerTwo);
+  const [centerTextState, setCenterTextState] = useState(centerText);
 
   const updateDocument = async () => {
     const newDocumentData = {
@@ -40,7 +40,7 @@ const Editor = (props: { documentId: string }) => {
     await updateDoc(docRef, newDocumentData);
   };
 
-  const updateCenter = (e) => {
+  const updateCenter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCenterTextState(e.target.value);
   };
 
@@ -61,7 +61,7 @@ const Editor = (props: { documentId: string }) => {
       </S.PlayersForm>
       <S.VerticalDivider />
       <label htmlFor="">Center Text (for example: "Round 1 Winners")</label>
-      <input type="text" onChange={updateCenter} />
+      <input type="text" onChange={updateCenter} value={centerTextState} />
       <S.VerticalDivider />
       <S.UpdateButton onClick={() => updateDocument()}>Update</S.UpdateButton>
     </S.Editor>
@@ -83,24 +83,24 @@ const PlayerEditor = (props: { player: PlayerData; setter: Function }) => {
     const newPlayerData = {
       name: playerName ?? "",
       tag: playerTag ?? "",
-      score: Number(playerScore),
+      score: playerScore,
     };
 
     setter(newPlayerData);
   };
 
-  const handleNameChange = async (e) => {
+  const handleNameChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setPlayerName(e.target.value);
     handleSubmit();
   };
 
-  const handleTagChange = async (e) => {
+  const handleTagChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setPlayerTag(e.target.value);
     handleSubmit();
   };
 
-  const handleScoreChange = async (e) => {
-    setPlayerScore(e.target.value);
+  const handleScoreChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPlayerScore(Number(e.target.value));
     handleSubmit();
   };
 
