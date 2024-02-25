@@ -106,7 +106,7 @@ const PlayerEditor = (props: { player: PlayerData; setter: Function }) => {
 
   return (
     <S.PlayerDiv>
-      <label htmlFor="player-tag">Tag</label>
+      <label htmlFor="player-tag">Prefix/Sponsor</label>
       <input
         name="player-tag"
         type="text"
