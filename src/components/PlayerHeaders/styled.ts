@@ -12,7 +12,7 @@ export const PlayerContainer = styled.section`
 `;
 
 export const CenterText = styled.h1`
-  background-color: rgba(0, 0, 0, 0.7);
+  /* background-color: rgba(0, 0, 0, 0.7); */
   color: white;
   font-weight: 600;
   font-size: 22pt;
@@ -25,8 +25,8 @@ export const CenterText = styled.h1`
 `;
 
 export const Player = styled.article`
-  background-color: rgba(0, 0, 0, 0.7);
-  font-size: 27pt;
+  background-color: rgba(0, 0, 0, 1);
+  font-size: 33pt;
   display: grid;
   grid-template-columns: 1fr auto;
   color: white;
