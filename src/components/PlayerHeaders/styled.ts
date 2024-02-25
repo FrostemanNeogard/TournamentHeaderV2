@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const PlayerContainer = styled.section`
-  width: 100%;
+  width: 1920px !important;
+  height: 1080px !important;
+  overflow: hidden;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   color: red;
