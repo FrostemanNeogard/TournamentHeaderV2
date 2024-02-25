@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { db } from "src/util/Firebase";
 import { PlayerData } from "src/_types/playerData";
@@ -24,45 +24,47 @@ const Editor = (props: { documentId: string }) => {
     const newDocumentData = {
       playerOne: {
         name: playerOneData?.name,
-        tag: "",
+        tag: playerOneData?.tag,
         score: playerOneData?.score ?? 0,
       },
       playerTwo: {
         name: playerTwoData?.name,
-        tag: "",
+        tag: playerTwoData?.tag,
         score: playerTwoData?.score ?? 0,
       },
-      centerText: centerTextState,
+      centerText: centerTextState ?? "",
       reversed,
       theme,
     };
 
-    // if (!playerOneData || !playerTwoData) {
-    //   return;
-    // }
-
-    console.log("Updating shit:", newDocumentData);
-
-    await setDoc(docRef, newDocumentData);
+    await updateDoc(docRef, newDocumentData);
   };
 
   const updateCenter = (e) => {
     setCenterTextState(e.target.value);
   };
 
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
-    <>
-      {loading && <h1>Loading...</h1>}
-      {!loading && (
-        <>
-          <PlayerEditor player={playerOne} setter={setPlayerOneData} />
-          <PlayerEditor player={playerTwo} setter={setPlayerTwoData} />
-          <label htmlFor="">Center</label>
-          <input type="text" onChange={updateCenter} />
-          <button onClick={() => updateDocument()}>Update</button>
-        </>
-      )}
-    </>
+    <S.Editor>
+      <S.EditorHeading>Tournament Header Editor</S.EditorHeading>
+      <S.VerticalDivider />
+      <S.PlayersForm>
+        <S.PlayerHeading>Player 1</S.PlayerHeading>
+        <PlayerEditor player={playerOne} setter={setPlayerOneData} />
+        <S.VerticalDivider />
+        <S.PlayerHeading>Player 2</S.PlayerHeading>
+        <PlayerEditor player={playerTwo} setter={setPlayerTwoData} />
+      </S.PlayersForm>
+      <S.VerticalDivider />
+      <label htmlFor="">Center Text (for example: "Round 1 Winners")</label>
+      <input type="text" onChange={updateCenter} />
+      <S.VerticalDivider />
+      <S.UpdateButton onClick={() => updateDocument()}>Update</S.UpdateButton>
+    </S.Editor>
   );
 };
 
@@ -73,39 +75,44 @@ const PlayerEditor = (props: { player: PlayerData; setter: Function }) => {
   const [playerTag, setPlayerTag] = useState(player.tag);
   const [playerScore, setPlayerScore] = useState<number>(player.score);
 
+  useEffect(() => {
+    handleSubmit();
+  }, [playerName, playerTag, playerScore]);
+
   const handleSubmit = () => {
     const newPlayerData = {
-      name: playerName,
-      tag: playerTag,
-      score: playerScore,
+      name: playerName ?? "",
+      tag: playerTag ?? "",
+      score: Number(playerScore),
     };
+
     setter(newPlayerData);
   };
 
   const handleNameChange = async (e) => {
-    await setPlayerName(e.target.value);
+    setPlayerName(e.target.value);
     handleSubmit();
   };
 
   const handleTagChange = async (e) => {
-    await setPlayerTag(e.target.value);
+    setPlayerTag(e.target.value);
     handleSubmit();
   };
 
   const handleScoreChange = async (e) => {
-    await setPlayerScore(e.target.value);
+    setPlayerScore(e.target.value);
     handleSubmit();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* <label htmlFor="player-tag">Tag</label>
+    <S.PlayerDiv>
+      <label htmlFor="player-tag">Tag</label>
       <input
         name="player-tag"
         type="text"
         value={playerTag ?? ""}
         onChange={handleTagChange}
-      /> */}
+      />
 
       <label htmlFor="player-name">Name</label>
       <input
@@ -122,7 +129,7 @@ const PlayerEditor = (props: { player: PlayerData; setter: Function }) => {
         value={playerScore}
         onChange={handleScoreChange}
       />
-    </form>
+    </S.PlayerDiv>
   );
 };
 
