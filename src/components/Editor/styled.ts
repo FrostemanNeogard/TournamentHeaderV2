@@ -16,6 +16,7 @@ export const Editor = styled.div`
   background-color: #ccc;
   border-radius: 5px;
   padding: 2rem;
+  row-gap: 1rem;
 
   label {
     text-align: center;
@@ -34,16 +35,13 @@ export const PlayerHeading = styled.h1``;
 export const PlayersForm = styled.form`
   display: grid;
   width: 100%;
-
-  input {
-    /* width: 100%; */
-  }
 `;
 
 export const PlayerDiv = styled.div`
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: repeat(3, min-content);
+  grid-template-columns: 3fr 3fr 3fr 2fr;
+  column-gap: 1rem;
   grid-template-rows: repeat(2, 1fr);
   justify-content: space-between;
 
@@ -70,5 +68,34 @@ export const UpdateButton = styled.button`
   &:hover {
     cursor: pointer;
     background-color: #0d0;
+  }
+`;
+
+export const ScoreButtons = styled.div`
+  grid-row: 2;
+  display: flex;
+  column-gap: 0.5rem;
+  width: 100%;
+
+  button {
+    padding: 1rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+`;
+
+export const IncrementButton = styled.button`
+  background-color: #0f0;
+  &:hover {
+    background-color: #0d0;
+  }
+`;
+
+export const DecrementButton = styled.button`
+  background-color: #f00;
+  &:hover {
+    background-color: #d00;
   }
 `;
