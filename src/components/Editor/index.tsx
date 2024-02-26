@@ -9,8 +9,7 @@ const Editor = (props: { documentId: string }) => {
   const { documentId } = props;
   const docRef = doc(db, "tournament-sets", documentId);
   const [value, loading, error] = useDocument(docRef);
-  const { playerOne, playerTwo, centerText, reversed, theme } =
-    value?.data() || {};
+  const { playerOne, playerTwo, centerText, reversed } = value?.data() || {};
 
   if (!!error) {
     console.error(`An error ocurred: ${error}`);
@@ -35,7 +34,6 @@ const Editor = (props: { documentId: string }) => {
       },
       centerText: centerTextState ?? "",
       reversed: isReversed,
-      theme,
     };
 
     await updateDoc(docRef, newDocumentData);
