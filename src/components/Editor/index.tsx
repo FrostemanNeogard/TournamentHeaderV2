@@ -19,6 +19,7 @@ const Editor = (props: { documentId: string }) => {
   const [playerOneData, setPlayerOneData] = useState<PlayerData>(playerOne);
   const [playerTwoData, setPlayerTwoData] = useState<PlayerData>(playerTwo);
   const [centerTextState, setCenterTextState] = useState<string>(centerText);
+  const [isReversed, setIsReversed] = useState<boolean>(reversed ?? false);
 
   const updateDocument = async () => {
     const newDocumentData = {
@@ -33,7 +34,7 @@ const Editor = (props: { documentId: string }) => {
         score: playerTwoData?.score ?? 0,
       },
       centerText: centerTextState ?? "",
-      reversed,
+      reversed: isReversed,
       theme,
     };
 
@@ -42,6 +43,10 @@ const Editor = (props: { documentId: string }) => {
 
   const updateCenter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCenterTextState(e.target.value);
+  };
+
+  const toggleReversed = () => {
+    setIsReversed((prevState) => !prevState);
   };
 
   if (loading) {
@@ -61,7 +66,9 @@ const Editor = (props: { documentId: string }) => {
       <S.VerticalDivider />
       <label htmlFor="">Center Text (for example: "Round 1 Winners")</label>
       <input type="text" onChange={updateCenter} value={centerTextState} />
-      <button onClick={() => updateDocument()}>Reverse</button>
+      <button onClick={() => toggleReversed()}>
+        Reversed: {isReversed ? "yes" : "no"}
+      </button>
       <S.UpdateButton onClick={() => updateDocument()}>Update</S.UpdateButton>
     </S.Editor>
   );
