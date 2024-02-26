@@ -48,6 +48,11 @@ export const Player = styled.article`
   }
 
   &:first-child {
+    h2 {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
     left: 160px;
   }
 `;
