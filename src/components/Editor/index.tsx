@@ -18,7 +18,7 @@ const Editor = (props: { documentId: string }) => {
 
   const [playerOneData, setPlayerOneData] = useState<PlayerData>(playerOne);
   const [playerTwoData, setPlayerTwoData] = useState<PlayerData>(playerTwo);
-  const [centerTextState, setCenterTextState] = useState(centerText);
+  const [centerTextState, setCenterTextState] = useState<string>(centerText);
 
   const updateDocument = async () => {
     const newDocumentData = {
@@ -51,7 +51,6 @@ const Editor = (props: { documentId: string }) => {
   return (
     <S.Editor>
       <S.EditorHeading>Tournament Header Editor</S.EditorHeading>
-      <S.VerticalDivider />
       <S.PlayersForm>
         <S.PlayerHeading>Player 1</S.PlayerHeading>
         <PlayerEditor player={playerOne} setter={setPlayerOneData} />
@@ -62,7 +61,7 @@ const Editor = (props: { documentId: string }) => {
       <S.VerticalDivider />
       <label htmlFor="">Center Text (for example: "Round 1 Winners")</label>
       <input type="text" onChange={updateCenter} value={centerTextState} />
-      <S.VerticalDivider />
+      <button onClick={() => updateDocument()}>Reverse</button>
       <S.UpdateButton onClick={() => updateDocument()}>Update</S.UpdateButton>
     </S.Editor>
   );
@@ -89,18 +88,33 @@ const PlayerEditor = (props: { player: PlayerData; setter: Function }) => {
     setter(newPlayerData);
   };
 
-  const handleNameChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPlayerName(e.target.value);
     handleSubmit();
   };
 
-  const handleTagChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTagChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPlayerTag(e.target.value);
     handleSubmit();
   };
 
-  const handleScoreChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleScoreChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPlayerScore(Number(e.target.value));
+    handleSubmit();
+  };
+
+  const incrementScore = () => {
+    setPlayerScore(playerScore + 1);
+    handleSubmit();
+  };
+
+  const decrementScore = () => {
+    setPlayerScore(playerScore - 1);
+    handleSubmit();
+  };
+
+  const resetScore = () => {
+    setPlayerScore(0);
     handleSubmit();
   };
 
@@ -129,6 +143,18 @@ const PlayerEditor = (props: { player: PlayerData; setter: Function }) => {
         value={playerScore}
         onChange={handleScoreChange}
       />
+
+      <S.ScoreButtons>
+        <S.IncrementButton type="button" onClick={() => incrementScore()}>
+          +
+        </S.IncrementButton>
+        <S.DecrementButton type="button" onClick={() => decrementScore()}>
+          -
+        </S.DecrementButton>
+        <button type="button" onClick={() => resetScore()}>
+          Reset
+        </button>
+      </S.ScoreButtons>
     </S.PlayerDiv>
   );
 };
