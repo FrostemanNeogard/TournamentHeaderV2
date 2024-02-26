@@ -36,11 +36,14 @@ export const Header = (props: { documentId: string }) => {
   const { documentId } = props;
   const docRef = doc(db, "tournament-sets", documentId);
   const [value, loading, error] = useDocument(docRef);
-  const { playerOne, playerTwo, centerText, reversed, theme } =
-    value?.data() || {};
+  const { playerOne, playerTwo, centerText, reversed } = value?.data() || {};
 
-  if (!!error) {
+  if (error) {
     console.error(`An error ocurred: ${error}`);
+  }
+
+  if (loading) {
+    return <h1>Loading...</h1>;
   }
 
   return (
