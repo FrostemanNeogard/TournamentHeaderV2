@@ -27,7 +27,7 @@ export const CenterText = styled.h1`
 `;
 
 export const Player = styled.article`
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 0.7);
   font-size: 33pt;
   display: grid;
   grid-template-columns: 1fr auto;
@@ -48,10 +48,6 @@ export const Player = styled.article`
   }
 
   &:first-child {
-    h2 {
-      grid-column: 2;
-      grid-row: 1;
-    }
     left: 160px;
   }
 `;
