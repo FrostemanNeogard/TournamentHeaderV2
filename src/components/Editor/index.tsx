@@ -66,7 +66,7 @@ const Editor = (props: { documentId: string }) => {
     setIsReversed((prevState) => !prevState);
   };
 
-  if (loading) {
+  if (loading || !playerOneData || !playerTwoData) {
     return <h1>Loading...</h1>;
   }
 
