@@ -9,16 +9,35 @@ const Editor = (props: { documentId: string }) => {
   const { documentId } = props;
   const docRef = doc(db, "tournament-sets", documentId);
   const [value, loading, error] = useDocument(docRef);
-  const { playerOne, playerTwo, centerText, reversed } = value?.data() || {};
+
+  const placeHolderPlayer = {
+    name: "",
+    score: 0,
+    tag: "",
+  };
+
+  const [playerOneData, setPlayerOneData] = useState<PlayerData | undefined>();
+  const [playerTwoData, setPlayerTwoData] = useState<PlayerData | undefined>();
+  const [centerTextState, setCenterTextState] = useState<string>();
+  const [isReversed, setIsReversed] = useState<boolean>();
+
+  useEffect(() => {
+    if (!loading) {
+      const { playerOne, playerTwo, centerText, reversed } = value!.data()!;
+      setPlayerOneData(playerOne);
+      setPlayerTwoData(playerTwo);
+      setCenterTextState(centerText);
+      setIsReversed(reversed);
+    }
+  }, [loading]);
+
+  if (loading) {
+    return <h1>Loading</h1>;
+  }
 
   if (!!error) {
     console.error(`An error ocurred: ${error}`);
   }
-
-  const [playerOneData, setPlayerOneData] = useState<PlayerData>(playerOne);
-  const [playerTwoData, setPlayerTwoData] = useState<PlayerData>(playerTwo);
-  const [centerTextState, setCenterTextState] = useState<string>(centerText);
-  const [isReversed, setIsReversed] = useState<boolean>(reversed ?? false);
 
   const updateDocument = async () => {
     const newDocumentData = {
@@ -56,10 +75,10 @@ const Editor = (props: { documentId: string }) => {
       <S.EditorHeading>Tournament Header Editor</S.EditorHeading>
       <S.PlayersForm>
         <S.PlayerHeading>Player 1</S.PlayerHeading>
-        <PlayerEditor player={playerOne} setter={setPlayerOneData} />
+        <PlayerEditor player={playerOneData} setter={setPlayerOneData} />
         <S.VerticalDivider />
         <S.PlayerHeading>Player 2</S.PlayerHeading>
-        <PlayerEditor player={playerTwo} setter={setPlayerTwoData} />
+        <PlayerEditor player={playerTwoData} setter={setPlayerTwoData} />
       </S.PlayersForm>
       <S.VerticalDivider />
       <label htmlFor="">Center Text (for example: "Round 1 Winners")</label>
@@ -72,12 +91,15 @@ const Editor = (props: { documentId: string }) => {
   );
 };
 
-const PlayerEditor = (props: { player: PlayerData; setter: Function }) => {
+const PlayerEditor = (props: {
+  player: PlayerData | undefined;
+  setter: Function;
+}) => {
   const { player, setter } = props;
 
-  const [playerName, setPlayerName] = useState(player.name);
-  const [playerTag, setPlayerTag] = useState(player.tag);
-  const [playerScore, setPlayerScore] = useState<number>(player.score);
+  const [playerName, setPlayerName] = useState(player?.name);
+  const [playerTag, setPlayerTag] = useState(player?.tag);
+  const [playerScore, setPlayerScore] = useState<number>(player?.score ?? 0);
 
   useEffect(() => {
     handleSubmit();
@@ -142,24 +164,26 @@ const PlayerEditor = (props: { player: PlayerData; setter: Function }) => {
       />
 
       <label htmlFor="player-score">Score</label>
-      <input
-        name="player-score"
-        type="number"
-        value={playerScore}
-        onChange={handleScoreChange}
-      />
+      <S.ScoreInput>
+        <input
+          name="player-score"
+          type="number"
+          value={playerScore}
+          onChange={handleScoreChange}
+        />
 
-      <S.ScoreButtons>
-        <S.IncrementButton type="button" onClick={() => incrementScore()}>
-          +
-        </S.IncrementButton>
-        <S.DecrementButton type="button" onClick={() => decrementScore()}>
-          -
-        </S.DecrementButton>
-        <button type="button" onClick={() => resetScore()}>
-          Reset
-        </button>
-      </S.ScoreButtons>
+        <S.ScoreButtons>
+          <S.IncrementButton type="button" onClick={() => incrementScore()}>
+            +
+          </S.IncrementButton>
+          <S.DecrementButton type="button" onClick={() => decrementScore()}>
+            -
+          </S.DecrementButton>
+          <button type="button" onClick={() => resetScore()}>
+            Reset
+          </button>
+        </S.ScoreButtons>
+      </S.ScoreInput>
     </S.PlayerDiv>
   );
 };

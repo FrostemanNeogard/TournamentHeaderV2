@@ -7,12 +7,7 @@ export const EditorHeading = styled.h1`
 
 export const Editor = styled.div`
   display: grid;
-  grid-template-rows: repeat(4, auto);
   width: 90vw;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background-color: #ccc;
   border-radius: 5px;
   padding: 2rem;
@@ -27,6 +22,14 @@ export const Editor = styled.div`
   input {
     border-radius: 5px;
     padding: 0.5rem;
+    width: 100%;
+    &[type="number"] {
+      width: 5rem;
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
   }
 `;
 
@@ -40,15 +43,20 @@ export const PlayersForm = styled.form`
 export const PlayerDiv = styled.div`
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 3fr 3fr 3fr 2fr;
+  grid-template-columns: 3fr 3fr 2fr;
   column-gap: 1rem;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: 2rem auto;
   justify-content: space-between;
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     grid-auto-flow: row;
   }
+`;
+
+export const ScoreInput = styled.div`
+  display: flex;
+  column-gap: 0.5rem;
 `;
 
 export const VerticalDivider = styled.div`
@@ -74,7 +82,7 @@ export const UpdateButton = styled.button`
 export const ScoreButtons = styled.div`
   grid-row: 2;
   display: flex;
-  column-gap: 0.5rem;
+  column-gap: inherit;
   width: 100%;
 
   button {
