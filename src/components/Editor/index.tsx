@@ -10,12 +10,6 @@ const Editor = (props: { documentId: string }) => {
   const docRef = doc(db, "tournament-sets", documentId);
   const [value, loading, error] = useDocument(docRef);
 
-  const placeHolderPlayer = {
-    name: "",
-    score: 0,
-    tag: "",
-  };
-
   const [playerOneData, setPlayerOneData] = useState<PlayerData | undefined>();
   const [playerTwoData, setPlayerTwoData] = useState<PlayerData | undefined>();
   const [centerTextState, setCenterTextState] = useState<string>();
