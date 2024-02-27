@@ -120,7 +120,8 @@ const PlayerEditor = (props: {
   };
 
   const handleScoreChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPlayerScore(Number(e.target.value));
+    let newValue: number = Number(e.target.value);
+    setPlayerScore(newValue);
     handleSubmit();
   };
 
@@ -162,7 +163,7 @@ const PlayerEditor = (props: {
         <input
           name="player-score"
           type="number"
-          value={playerScore}
+          value={Number(playerScore).toString()}
           onChange={handleScoreChange}
         />
 
