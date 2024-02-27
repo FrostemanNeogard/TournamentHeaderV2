@@ -1941,6 +1941,11 @@ PERFORMANCE OF THIS SOFTWARE.
   }
 
   &:first-child {
+    h2 {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
     left: 160px;
   }
 `,Ag=t=>{const{playerData:e,reversed:n}=t,r=()=>n?M.jsxs("h1",{children:[e.tag&&M.jsx("span",{children:e.tag}),e.name]}):M.jsxs("h1",{children:[e.name,e.tag&&M.jsx("span",{children:e.tag})]});return M.jsxs(Rk,{children:[M.jsx("h2",{children:e.score}),M.jsx(r,{})]})},Pk=t=>{const{documentId:e}=t,n=h1(I1,"tournament-sets",e),[r,i,s]=S1(n),{playerOne:o,playerTwo:a,centerText:l,reversed:u}=(r==null?void 0:r.data())||{};return s&&console.error(`An error ocurred: ${s}`),i?M.jsx("h1",{children:"Loading..."}):M.jsxs(Ak,{children:[r&&M.jsx(Ag,{playerData:u?a:o,reversed:!0}),M.jsx(Ck,{children:l}),r&&M.jsx(Ag,{playerData:u?o:a})]})};/**
