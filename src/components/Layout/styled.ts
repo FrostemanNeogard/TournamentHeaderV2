@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const AppBackground = styled.div`
-  width: 100%;
   min-height: 100vh;
   height: auto;
   display: grid;
@@ -17,11 +16,6 @@ export const AppBackground = styled.div`
     display: grid;
     align-self: center;
     width: 90vw;
-
-    @media screen and (max-width: ${(props) => props.theme.breakpoints.md}) {
-      width: 100%;
-    }
-
     height: max-content;
     background-color: #555;
     color: #f2f2f2;
