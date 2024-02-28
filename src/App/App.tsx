@@ -1,8 +1,8 @@
-import { Header } from "src/components/Pages/Render";
+import { Header } from "src/Pages/Render";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import Editor from "src/components/Pages/Edit";
+import Editor from "src/Pages/Edit";
 import { Layout } from "src/components/Layout";
-import { HomePage } from "src/components/Pages/Home";
+import { HomePage } from "src/Pages/Home";
 
 const documentId = "NEW_TEST";
 
