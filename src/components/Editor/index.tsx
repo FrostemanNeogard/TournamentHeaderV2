@@ -74,16 +74,18 @@ const Editor = (props: { documentId: string }) => {
 
   return (
     <S.Editor>
+      <S.EditorHeading>Editing header: {documentId}</S.EditorHeading>
+      <S.HorizontalDivider />
       <S.PlayersForm>
         <S.PlayerHeading>Player 1</S.PlayerHeading>
         <PlayerEditor player={playerOneData} setter={setPlayerOneData} />
       </S.PlayersForm>
-      <S.VerticalDivider />
+      <S.HorizontalDivider />
       <S.PlayersForm>
         <S.PlayerHeading>Player 2</S.PlayerHeading>
         <PlayerEditor player={playerTwoData} setter={setPlayerTwoData} />
       </S.PlayersForm>
-      <S.VerticalDivider />
+      <S.HorizontalDivider />
       <S.MiscallaneousDetails>
         <S.LabelledInput>
           <label htmlFor="">Center Text (for example: "Round 1 Winners")</label>

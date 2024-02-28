@@ -7,14 +7,20 @@ export const EditorHeading = styled.h1`
 
 export const Editor = styled.div`
   display: grid;
+  align-self: center;
   width: 90vw;
   height: max-content;
-  background-color: #ccc;
+  background-color: #555;
+  color: white;
+  filter: drop-shadow(1px 5px 10px black);
+  border: 1px solid black;
   border-radius: 5px;
   padding: 2rem;
   row-gap: 1rem;
 
   button {
+    border: 1px solid black;
+
     &:hover {
       cursor: pointer;
     }
@@ -70,11 +76,11 @@ export const ScoreInput = styled.div`
   column-gap: 0.5rem;
 `;
 
-export const VerticalDivider = styled.div`
+export const HorizontalDivider = styled.div`
   width: 100%;
   height: 1px;
   border-bottom: 1px solid black;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 `;
 
 export const UpdateButton = styled.button`
