@@ -15,7 +15,7 @@ export const AppBackground = styled.div`
   main {
     display: grid;
     align-self: center;
-    width: 90vw;
+    max-width: 50vmax;
     height: max-content;
     background-color: #555;
     color: #f2f2f2;

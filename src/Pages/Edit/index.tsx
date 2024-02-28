@@ -87,7 +87,7 @@ const Editor = () => {
 
   return (
     <S.Editor>
-      <S.EditorHeading>Editing header: {documentId}</S.EditorHeading>
+      <S.EditorHeading>ID: {documentId}</S.EditorHeading>
       <S.HorizontalDivider />
       <S.PlayersForm>
         <S.PlayerHeading>Player 1</S.PlayerHeading>

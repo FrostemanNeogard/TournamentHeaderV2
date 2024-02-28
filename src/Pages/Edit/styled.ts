@@ -46,7 +46,7 @@ export const PlayerDiv = styled.div`
   justify-content: space-between;
 
   @media screen and (max-width: ${(props) => props.theme.breakpoints.md}) {
-    grid-template-columns: max-content;
+    grid-template-columns: 1fr;
   }
 `;
 
