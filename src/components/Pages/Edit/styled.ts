@@ -5,32 +5,7 @@ export const EditorHeading = styled.h1`
   font-size: 22pt;
 `;
 
-export const Editor = styled.div`
-  display: grid;
-  align-self: center;
-  width: 90vw;
-
-  @media screen and (max-width: ${(props) => props.theme.breakpoints.mobile}) {
-    width: 100%;
-  }
-
-  height: max-content;
-  background-color: #555;
-  color: #f2f2f2;
-  filter: drop-shadow(1px 5px 10px black);
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 2rem;
-  row-gap: 1rem;
-
-  button {
-    border: 1px solid black;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
+export const Editor = styled.main`
   label {
     text-align: left;
     align-self: center;
@@ -70,7 +45,7 @@ export const PlayerDiv = styled.div`
   column-gap: 1rem;
   justify-content: space-between;
 
-  @media screen and (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+  @media screen and (max-width: ${(props) => props.theme.breakpoints.md}) {
     grid-template-columns: max-content;
   }
 `;
@@ -148,7 +123,7 @@ export const MiscallaneousDetails = styled.div`
     width: 100%;
   }
 
-  @media screen and (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+  @media screen and (max-width: ${(props) => props.theme.breakpoints.md}) {
     div:first-child {
       grid-column: 1 / -1;
     }
