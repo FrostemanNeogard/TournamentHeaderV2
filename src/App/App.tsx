@@ -1,6 +1,6 @@
-import { Header } from "src/components/PlayerHeaders";
+import { Header } from "src/components/Pages/Render";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import Editor from "src/components/Editor";
+import Editor from "src/components/Pages/Edit";
 import { Layout } from "src/components/Layout";
 
 const documentId = "NEW_TEST";
@@ -11,7 +11,8 @@ function App() {
       <Routes>
         <Route path="render" element={<Header documentId={documentId} />} />
         <Route path="" element={<Layout />}>
-          <Route path="edit" element={<Editor documentId={documentId} />} />
+          <Route index element={<h1>Hellooo</h1>} />
+          <Route path="edit" element={<Editor />} />
         </Route>
       </Routes>
     </HashRouter>
