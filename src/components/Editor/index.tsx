@@ -4,9 +4,11 @@ import { db } from "src/util/Firebase";
 import { PlayerData } from "src/_types/playerData";
 import * as S from "./styled";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
-const Editor = (props: { documentId: string }) => {
-  const { documentId } = props;
+const Editor = () => {
+  const [queryParameters] = useSearchParams();
+  const documentId = queryParameters.get("id") ?? "";
   const docRef = doc(db, "tournament-sets", documentId);
   const [value, loading, error] = useDocument(docRef);
 
@@ -17,15 +19,21 @@ const Editor = (props: { documentId: string }) => {
   const [theme, setTheme] = useState<string>();
 
   useEffect(() => {
-    if (!loading) {
-      const { playerOne, playerTwo, centerText, reversed, theme } =
-        value!.data()!;
-      setPlayerOneData(playerOne);
-      setPlayerTwoData(playerTwo);
-      setCenterTextState(centerText);
-      setIsReversed(reversed);
-      setTheme(theme);
+    if (loading) {
+      return;
     }
+
+    if (!value?.data()) {
+      return;
+    }
+
+    const { playerOne, playerTwo, centerText, reversed, theme } =
+      value!.data()!;
+    setPlayerOneData(playerOne);
+    setPlayerTwoData(playerTwo);
+    setCenterTextState(centerText);
+    setIsReversed(reversed);
+    setTheme(theme);
   }, [loading]);
 
   if (loading) {
@@ -34,6 +42,7 @@ const Editor = (props: { documentId: string }) => {
 
   if (!!error) {
     console.error(`An error ocurred: ${error}`);
+    return <h1>error.</h1>;
   }
 
   const updateDocument = async () => {
@@ -69,7 +78,11 @@ const Editor = (props: { documentId: string }) => {
   };
 
   if (loading || !playerOneData || !playerTwoData) {
-    return <h1>Loading...</h1>;
+    return (
+      <S.Editor>
+        <h1>Loading...</h1>
+      </S.Editor>
+    );
   }
 
   return (
