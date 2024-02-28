@@ -11,7 +11,7 @@ export const Editor = styled.div`
   width: 90vw;
   height: max-content;
   background-color: #555;
-  color: white;
+  color: #f2f2f2;
   filter: drop-shadow(1px 5px 10px black);
   border: 1px solid black;
   border-radius: 5px;
