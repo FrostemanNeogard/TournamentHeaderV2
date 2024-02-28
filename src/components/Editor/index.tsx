@@ -14,14 +14,17 @@ const Editor = (props: { documentId: string }) => {
   const [playerTwoData, setPlayerTwoData] = useState<PlayerData | undefined>();
   const [centerTextState, setCenterTextState] = useState<string>();
   const [isReversed, setIsReversed] = useState<boolean>();
+  const [theme, setTheme] = useState<string>();
 
   useEffect(() => {
     if (!loading) {
-      const { playerOne, playerTwo, centerText, reversed } = value!.data()!;
+      const { playerOne, playerTwo, centerText, reversed, theme } =
+        value!.data()!;
       setPlayerOneData(playerOne);
       setPlayerTwoData(playerTwo);
       setCenterTextState(centerText);
       setIsReversed(reversed);
+      setTheme(theme);
     }
   }, [loading]);
 
@@ -47,6 +50,7 @@ const Editor = (props: { documentId: string }) => {
       },
       centerText: centerTextState ?? "",
       reversed: isReversed,
+      theme: theme,
     };
 
     await updateDoc(docRef, newDocumentData);
@@ -60,27 +64,50 @@ const Editor = (props: { documentId: string }) => {
     setIsReversed((prevState) => !prevState);
   };
 
+  const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setTheme(e.target.value);
+  };
+
   if (loading || !playerOneData || !playerTwoData) {
     return <h1>Loading...</h1>;
   }
 
   return (
     <S.Editor>
-      <S.EditorHeading>Tournament Header Editor</S.EditorHeading>
       <S.PlayersForm>
         <S.PlayerHeading>Player 1</S.PlayerHeading>
         <PlayerEditor player={playerOneData} setter={setPlayerOneData} />
-        <S.VerticalDivider />
+      </S.PlayersForm>
+      <S.VerticalDivider />
+      <S.PlayersForm>
         <S.PlayerHeading>Player 2</S.PlayerHeading>
         <PlayerEditor player={playerTwoData} setter={setPlayerTwoData} />
       </S.PlayersForm>
       <S.VerticalDivider />
-      <label htmlFor="">Center Text (for example: "Round 1 Winners")</label>
-      <input type="text" onChange={updateCenter} value={centerTextState} />
-      <button onClick={() => toggleReversed()}>
-        Reversed: {isReversed ? "yes" : "no"}
-      </button>
-      <S.UpdateButton onClick={() => updateDocument()}>Update</S.UpdateButton>
+      <S.MiscallaneousDetails>
+        <S.LabelledInput>
+          <label htmlFor="">Center Text (for example: "Round 1 Winners")</label>
+          <input type="text" onChange={updateCenter} value={centerTextState} />
+        </S.LabelledInput>
+        <S.LabelledInput>
+          <label htmlFor="theme">Theme</label>
+          <select
+            name="theme"
+            onChange={handleThemeChange}
+            defaultValue={theme}
+          >
+            <option value={"tekken8"}>TEKKEN 8</option>
+            <option value={"tekken7"}>TEKKEN 7</option>
+          </select>
+        </S.LabelledInput>
+        <S.LabelledInput>
+          <label htmlFor="reversed-button">Reversed</label>
+          <button name="reversed-button" onClick={() => toggleReversed()}>
+            {isReversed ? "Yes" : "No"}
+          </button>
+        </S.LabelledInput>
+        <S.UpdateButton onClick={() => updateDocument()}>Update</S.UpdateButton>
+      </S.MiscallaneousDetails>
     </S.Editor>
   );
 };
@@ -142,43 +169,49 @@ const PlayerEditor = (props: {
 
   return (
     <S.PlayerDiv>
-      <label htmlFor="player-tag">Prefix/Sponsor</label>
-      <input
-        name="player-tag"
-        type="text"
-        value={playerTag ?? ""}
-        onChange={handleTagChange}
-      />
-
-      <label htmlFor="player-name">Name</label>
-      <input
-        name="player-name"
-        type="text"
-        value={playerName}
-        onChange={handleNameChange}
-      />
-
-      <label htmlFor="player-score">Score</label>
-      <S.ScoreInput>
+      <S.LabelledInput>
+        <label htmlFor="player-tag">Prefix/Sponsor</label>
         <input
-          name="player-score"
-          type="number"
-          value={Number(playerScore).toString()}
-          onChange={handleScoreChange}
+          name="player-tag"
+          type="text"
+          value={playerTag ?? ""}
+          onChange={handleTagChange}
         />
+      </S.LabelledInput>
 
-        <S.ScoreButtons>
-          <S.IncrementButton type="button" onClick={() => incrementScore()}>
-            +
-          </S.IncrementButton>
-          <S.DecrementButton type="button" onClick={() => decrementScore()}>
-            -
-          </S.DecrementButton>
-          <button type="button" onClick={() => resetScore()}>
-            Reset
-          </button>
-        </S.ScoreButtons>
-      </S.ScoreInput>
+      <S.LabelledInput>
+        <label htmlFor="player-name">Name</label>
+        <input
+          name="player-name"
+          type="text"
+          value={playerName}
+          onChange={handleNameChange}
+        />
+      </S.LabelledInput>
+
+      <S.LabelledInput>
+        <label htmlFor="player-score">Score</label>
+        <S.ScoreInput>
+          <input
+            name="player-score"
+            type="number"
+            value={Number(playerScore).toString()}
+            onChange={handleScoreChange}
+          />
+
+          <S.ScoreButtons>
+            <S.IncrementButton type="button" onClick={() => incrementScore()}>
+              +
+            </S.IncrementButton>
+            <S.DecrementButton type="button" onClick={() => decrementScore()}>
+              -
+            </S.DecrementButton>
+            <button type="button" onClick={() => resetScore()}>
+              Reset
+            </button>
+          </S.ScoreButtons>
+        </S.ScoreInput>
+      </S.LabelledInput>
     </S.PlayerDiv>
   );
 };

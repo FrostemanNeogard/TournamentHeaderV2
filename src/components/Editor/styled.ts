@@ -8,13 +8,20 @@ export const EditorHeading = styled.h1`
 export const Editor = styled.div`
   display: grid;
   width: 90vw;
+  height: max-content;
   background-color: #ccc;
   border-radius: 5px;
   padding: 2rem;
   row-gap: 1rem;
 
+  button {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   label {
-    text-align: center;
+    text-align: left;
     align-self: center;
     padding: 0.5rem;
   }
@@ -33,19 +40,23 @@ export const Editor = styled.div`
   }
 `;
 
-export const PlayerHeading = styled.h1``;
+export const PlayerHeading = styled.h1`
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 120%;
+  font-weight: 500;
+`;
 
 export const PlayersForm = styled.form`
   display: grid;
+  align-items: center;
   width: 100%;
 `;
 
 export const PlayerDiv = styled.div`
   display: grid;
-  grid-auto-flow: column;
   grid-template-columns: 3fr 3fr 2fr;
   column-gap: 1rem;
-  grid-template-rows: 2rem auto;
   justify-content: space-between;
 
   @media screen and (max-width: 768px) {
@@ -67,14 +78,8 @@ export const VerticalDivider = styled.div`
 `;
 
 export const UpdateButton = styled.button`
-  border: 1px solid black;
-  border-radius: 5px;
   background-color: #0f0;
-  color: black;
-  padding: 1rem;
-
   &:hover {
-    cursor: pointer;
     background-color: #0d0;
   }
 `;
@@ -82,15 +87,14 @@ export const UpdateButton = styled.button`
 export const ScoreButtons = styled.div`
   grid-row: 2;
   display: flex;
+  align-items: center;
+  justify-content: center;
   column-gap: inherit;
   width: 100%;
 
   button {
-    padding: 1rem;
-
-    &:hover {
-      cursor: pointer;
-    }
+    height: 2rem;
+    padding: 0 1rem;
   }
 `;
 
@@ -105,5 +109,32 @@ export const DecrementButton = styled.button`
   background-color: #f00;
   &:hover {
     background-color: #d00;
+  }
+`;
+
+export const LabelledInput = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  label {
+    align-self: flex-start;
+  }
+
+  input,
+  select {
+    height: 2rem;
+  }
+`;
+
+export const MiscallaneousDetails = styled.div`
+  display: grid;
+  column-gap: 1rem;
+  align-items: flex-end;
+  grid-template-columns: 3fr 1fr 1fr 1.5fr;
+
+  button {
+    white-space: nowrap;
+    height: 2rem;
+    width: 100%;
   }
 `;
