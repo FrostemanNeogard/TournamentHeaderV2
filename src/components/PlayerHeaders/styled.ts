@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const PlayerContainer = styled.section`
-  width: 1920px !important;
-  height: 1080px !important;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
