@@ -8,4 +8,8 @@ export const AppBackground = styled.div`
   padding: 3rem;
   justify-content: center;
   background-color: #1f1f1f;
+
+  @media screen and (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    padding: 0;
+  }
 `;

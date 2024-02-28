@@ -9,6 +9,11 @@ export const Editor = styled.div`
   display: grid;
   align-self: center;
   width: 90vw;
+
+  @media screen and (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    width: 100%;
+  }
+
   height: max-content;
   background-color: #555;
   color: #f2f2f2;
@@ -65,9 +70,8 @@ export const PlayerDiv = styled.div`
   column-gap: 1rem;
   justify-content: space-between;
 
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr;
-    grid-auto-flow: row;
+  @media screen and (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    grid-template-columns: max-content;
   }
 `;
 
@@ -134,7 +138,7 @@ export const LabelledInput = styled.div`
 
 export const MiscallaneousDetails = styled.div`
   display: grid;
-  column-gap: 1rem;
+  gap: 1rem;
   align-items: flex-end;
   grid-template-columns: 3fr 1fr 1fr 1.5fr;
 
@@ -142,5 +146,12 @@ export const MiscallaneousDetails = styled.div`
     white-space: nowrap;
     height: 2rem;
     width: 100%;
+  }
+
+  @media screen and (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    div:first-child {
+      grid-column: 1 / -1;
+    }
+    grid-template-columns: auto auto 3fr;
   }
 `;
