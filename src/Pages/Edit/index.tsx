@@ -37,12 +37,20 @@ const Editor = () => {
   }, [loading]);
 
   if (loading) {
-    return <h1>Loading</h1>;
+    return (
+      <S.Editor>
+        <h1>Loading...</h1>
+      </S.Editor>
+    );
   }
 
   if (!!error) {
     console.error(`An error ocurred: ${error}`);
-    return <h1>error.</h1>;
+    return (
+      <S.Editor>
+        <h1>An error ocurred.</h1>
+      </S.Editor>
+    );
   }
 
   const updateDocument = async () => {
