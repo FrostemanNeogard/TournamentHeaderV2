@@ -1,4 +1,4 @@
-type ThemeType = "flower" | "test";
+type ThemeType = "tekken7" | "tekken8";
 
 export type PlayerData = {
   name: string;
