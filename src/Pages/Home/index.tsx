@@ -70,8 +70,7 @@ export const HomePage = () => {
 
   return (
     <S.Main>
-      <h1>Tournament Header Homepage</h1>
-      {errorText && <p>{errorText}</p>}
+      {errorText && <S.ErrorText>{errorText}</S.ErrorText>}
       {verb ? (
         <HeaderNav
           handleIdChange={handleIdChange}
@@ -120,7 +119,7 @@ const HomeOptions = (props: {
 }) => {
   return (
     <>
-      <p>What would you like to do?</p>
+      <h1>What would you like to do?</h1>
       <button onClick={() => props.onChangeVerb("create")}>
         Create a new header
       </button>
