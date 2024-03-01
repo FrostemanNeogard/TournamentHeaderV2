@@ -9,8 +9,8 @@ export const AppBackground = styled.div`
 `;
 
 export const MainBackground = styled.div`
+  align-self: center;
   height: auto;
-  display: grid;
   padding: 3rem;
   justify-content: center;
 
