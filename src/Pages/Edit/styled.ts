@@ -1,8 +1,14 @@
 import styled from "styled-components";
 
-export const EditorHeading = styled.h1`
-  text-align: center;
-  font-size: 2rem;
+export const EditorHeading = styled.div`
+  display: flex;
+  justify-content: space-between;
+  column-gap: 1rem;
+
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+  }
 `;
 
 export const Editor = styled.main`
@@ -66,10 +72,10 @@ export const ScoreButtons = styled.div`
 `;
 
 export const IncrementButton = styled.button`
-  background-color: ${(props) => props.theme.colors.tertiary} !important;
+  background-color: ${(props) => props.theme.colors.confirm} !important;
   &:hover {
     background-color: ${(props) =>
-      props.theme.colors.tertiaryDarkened} !important;
+      props.theme.colors.confirmDarkened} !important;
   }
 `;
 

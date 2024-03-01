@@ -5,12 +5,16 @@ import { PlayerData } from "src/_types/playerData";
 import * as S from "./styled";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { Popup } from "src/components/Popup";
 
 const Editor = () => {
   const [queryParameters] = useSearchParams();
   const documentId = queryParameters.get("id") ?? "";
   const docRef = doc(db, "tournament-sets", documentId);
   const [value, loading, error] = useDocument(docRef);
+
+  const [isCopied, setIsCopied] = useState<boolean>(false);
 
   const [playerOneData, setPlayerOneData] = useState<PlayerData | undefined>();
   const [playerTwoData, setPlayerTwoData] = useState<PlayerData | undefined>();
@@ -85,6 +89,8 @@ const Editor = () => {
     setTheme(e.target.value);
   };
 
+  const renderURL = `${window.location.origin}${window.location.pathname}#render?id=${documentId}`;
+
   if (loading || !playerOneData || !playerTwoData) {
     return (
       <S.Editor>
@@ -94,51 +100,66 @@ const Editor = () => {
   }
 
   return (
-    <S.Editor>
-      <S.EditorHeading>ID: {documentId}</S.EditorHeading>
-      <S.HorizontalDivider />
-      <S.PlayersForm>
-        <S.PlayerHeading>Player 1</S.PlayerHeading>
-        <PlayerEditor player={playerOneData} setter={setPlayerOneData} />
-      </S.PlayersForm>
-      <S.HorizontalDivider />
-      <S.PlayersForm>
-        <S.PlayerHeading>Player 2</S.PlayerHeading>
-        <PlayerEditor player={playerTwoData} setter={setPlayerTwoData} />
-      </S.PlayersForm>
-      <S.HorizontalDivider />
-      <S.MiscallaneousDetails>
-        <S.LabelledInput>
-          <label htmlFor="center-text">
-            Center Text (for example: "Round 1 Winners")
-          </label>
-          <input
-            type="text"
-            name="center-text"
-            onChange={updateCenter}
-            value={centerTextState}
-          />
-        </S.LabelledInput>
-        <S.LabelledInput>
-          <label htmlFor="theme">Theme</label>
-          <select
-            name="theme"
-            onChange={handleThemeChange}
-            defaultValue={theme}
-          >
-            <option value={"tekken8"}>TEKKEN 8</option>
-            <option value={"tekken7"}>TEKKEN 7</option>
-          </select>
-        </S.LabelledInput>
-        <S.LabelledInput>
-          <label htmlFor="reversed-button">Reversed</label>
-          <button name="reversed-button" onClick={() => toggleReversed()}>
-            {isReversed ? "Yes" : "No"}
-          </button>
-        </S.LabelledInput>
-        <S.UpdateButton onClick={() => updateDocument()}>Update</S.UpdateButton>
-      </S.MiscallaneousDetails>
-    </S.Editor>
+    <>
+      {isCopied && (
+        <Popup
+          text="Render URL copied to clipboard!"
+          callback={() => setIsCopied(false)}
+        />
+      )}
+      <S.Editor>
+        <S.EditorHeading>
+          <h1>ID: {documentId}</h1>
+          <CopyToClipboard text={renderURL} onCopy={() => setIsCopied(true)}>
+            <button>Copy render URL</button>
+          </CopyToClipboard>
+        </S.EditorHeading>
+        <S.HorizontalDivider />
+        <S.PlayersForm>
+          <S.PlayerHeading>Player 1</S.PlayerHeading>
+          <PlayerEditor player={playerOneData} setter={setPlayerOneData} />
+        </S.PlayersForm>
+        <S.HorizontalDivider />
+        <S.PlayersForm>
+          <S.PlayerHeading>Player 2</S.PlayerHeading>
+          <PlayerEditor player={playerTwoData} setter={setPlayerTwoData} />
+        </S.PlayersForm>
+        <S.HorizontalDivider />
+        <S.MiscallaneousDetails>
+          <S.LabelledInput>
+            <label htmlFor="center-text">
+              Center Text (for example: "Round 1 Winners")
+            </label>
+            <input
+              type="text"
+              name="center-text"
+              onChange={updateCenter}
+              value={centerTextState}
+            />
+          </S.LabelledInput>
+          <S.LabelledInput>
+            <label htmlFor="theme">Theme</label>
+            <select
+              name="theme"
+              onChange={handleThemeChange}
+              defaultValue={theme}
+            >
+              <option value={"tekken8"}>TEKKEN 8</option>
+              <option value={"tekken7"}>TEKKEN 7</option>
+            </select>
+          </S.LabelledInput>
+          <S.LabelledInput>
+            <label htmlFor="reversed-button">Reversed</label>
+            <button name="reversed-button" onClick={() => toggleReversed()}>
+              {isReversed ? "Yes" : "No"}
+            </button>
+          </S.LabelledInput>
+          <S.UpdateButton onClick={() => updateDocument()}>
+            Update
+          </S.UpdateButton>
+        </S.MiscallaneousDetails>
+      </S.Editor>
+    </>
   );
 };
 
