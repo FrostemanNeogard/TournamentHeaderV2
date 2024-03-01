@@ -49,9 +49,10 @@ export const HorizontalDivider = styled.div`
 `;
 
 export const UpdateButton = styled.button`
-  background-color: #0d0 !important;
+  background-color: ${(props) => props.theme.colors.confirm} !important;
   &:hover {
-    background-color: #0c0 !important;
+    background-color: ${(props) =>
+      props.theme.colors.confirmDarkened} !important;
   }
 `;
 
@@ -65,16 +66,18 @@ export const ScoreButtons = styled.div`
 `;
 
 export const IncrementButton = styled.button`
-  background-color: #0d0 !important;
+  background-color: ${(props) => props.theme.colors.tertiary} !important;
   &:hover {
-    background-color: #0c0 !important;
+    background-color: ${(props) =>
+      props.theme.colors.tertiaryDarkened} !important;
   }
 `;
 
 export const DecrementButton = styled.button`
-  background-color: #d00 !important;
+  background-color: ${(props) => props.theme.colors.cancel} !important;
   &:hover {
-    background-color: #c00 !important;
+    background-color: ${(props) =>
+      props.theme.colors.cancelDarkened} !important;
   }
 `;
 
