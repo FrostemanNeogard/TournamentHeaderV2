@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const Main = styled.main`
   h1,
-  label {
+  label,
+  input {
     font-size: 2rem;
     font-weight: 700;
   }
