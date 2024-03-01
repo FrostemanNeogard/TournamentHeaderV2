@@ -8,11 +8,7 @@ export const Header = styled.header`
   }
 
   button {
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 1rem;
-    color: inherit;
-    background: #333;
+    background-color: ${(props) => props.theme.colors.tertiary};
 
     &:hover {
       cursor: pointer;
