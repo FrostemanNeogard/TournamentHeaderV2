@@ -109,8 +109,15 @@ const Editor = () => {
       <S.HorizontalDivider />
       <S.MiscallaneousDetails>
         <S.LabelledInput>
-          <label htmlFor="">Center Text (for example: "Round 1 Winners")</label>
-          <input type="text" onChange={updateCenter} value={centerTextState} />
+          <label htmlFor="center-text">
+            Center Text (for example: "Round 1 Winners")
+          </label>
+          <input
+            type="text"
+            name="center-text"
+            onChange={updateCenter}
+            value={centerTextState}
+          />
         </S.LabelledInput>
         <S.LabelledInput>
           <label htmlFor="theme">Theme</label>
