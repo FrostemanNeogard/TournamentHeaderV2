@@ -4,7 +4,7 @@ import { db } from "src/util/Firebase";
 import { PlayerData } from "src/_types/playerData";
 import * as S from "./styled";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Popup } from "src/components/Popup";
 
@@ -15,6 +15,7 @@ const Editor = () => {
   const [value, loading, error] = useDocument(docRef);
 
   const [isCopied, setIsCopied] = useState<boolean>(false);
+  const [noData, setNoData] = useState<boolean>(false);
 
   const [playerOneData, setPlayerOneData] = useState<PlayerData | undefined>();
   const [playerTwoData, setPlayerTwoData] = useState<PlayerData | undefined>();
@@ -28,6 +29,7 @@ const Editor = () => {
     }
 
     if (!value?.data()) {
+      setNoData(true);
       return;
     }
 
@@ -90,6 +92,19 @@ const Editor = () => {
   };
 
   const renderURL = `${window.location.origin}${window.location.pathname}#render?id=${documentId}`;
+
+  if (noData) {
+    return (
+      <S.Editor>
+        <S.Error>
+          <h1>This header doesn't exist.</h1>
+          <button>
+            <Link to="/">Go back</Link>
+          </button>
+        </S.Error>
+      </S.Editor>
+    );
+  }
 
   if (loading || !playerOneData || !playerTwoData) {
     return (

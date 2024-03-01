@@ -120,3 +120,19 @@ export const MiscallaneousDetails = styled.div`
     grid-template-columns: auto auto 3fr;
   }
 `;
+
+export const Error = styled.div`
+  font-size: 2rem;
+  color: white;
+  height: max-content;
+
+  a {
+    color: inherit !important;
+  }
+
+  button {
+    font-size: 2rem;
+    margin-top: 10px;
+    padding: 1rem !important;
+  }
+`;
