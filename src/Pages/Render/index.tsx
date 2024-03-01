@@ -3,6 +3,7 @@ import { useDocument } from "react-firebase-hooks/firestore";
 import { PlayerData } from "src/_types/playerData";
 import { db } from "src/util/Firebase";
 import * as S from "./styled";
+import { useSearchParams } from "react-router-dom";
 
 const PlayerCard = (props: { playerData: PlayerData; reversed?: boolean }) => {
   const { playerData, reversed } = props;
@@ -32,8 +33,9 @@ const PlayerCard = (props: { playerData: PlayerData; reversed?: boolean }) => {
   );
 };
 
-export const Header = (props: { documentId: string }) => {
-  const { documentId } = props;
+export const TournamentHeader = () => {
+  const [queryParameters] = useSearchParams();
+  const documentId = queryParameters.get("id") ?? "";
   const docRef = doc(db, "tournament-sets", documentId);
   const [value, loading, error] = useDocument(docRef);
   const { playerOne, playerTwo, centerText, reversed } = value?.data() || {};
