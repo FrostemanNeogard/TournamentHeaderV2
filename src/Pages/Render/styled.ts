@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PlayerContainer = styled.section`
+export const PlayerContainer = styled.section<{ $theme: string }>`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -52,5 +52,14 @@ export const Player = styled.article`
     }
 
     left: 160px;
+  }
+`;
+
+export const Error = styled.div`
+  font-size: 3rem;
+  color: white;
+
+  button {
+    font-size: 3rem;
   }
 `;
