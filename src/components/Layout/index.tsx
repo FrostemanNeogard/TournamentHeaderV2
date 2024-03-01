@@ -1,12 +1,14 @@
 import { Outlet } from "react-router-dom";
 import * as S from "./styled";
+import { Header } from "src/components/Header";
 
 export const Layout = () => {
   return (
-    <>
-      <S.AppBackground>
+    <S.AppBackground>
+      <Header />
+      <S.MainBackground>
         <Outlet />
-      </S.AppBackground>
-    </>
+      </S.MainBackground>
+    </S.AppBackground>
   );
 };

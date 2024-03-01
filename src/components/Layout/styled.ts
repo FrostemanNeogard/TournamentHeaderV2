@@ -1,12 +1,15 @@
 import styled from "styled-components";
 
 export const AppBackground = styled.div`
+  background-color: ${(props) => props.theme.colors.secondary};
   min-height: 100vh;
+`;
+
+export const MainBackground = styled.div`
   height: auto;
   display: grid;
   padding: 3rem;
   justify-content: center;
-  background-color: #1f1f1f;
 
   @media screen and (max-width: ${(props) => props.theme.breakpoints.md}) {
     padding: 0;
@@ -15,10 +18,9 @@ export const AppBackground = styled.div`
   main {
     display: grid;
     align-self: center;
-    max-width: 50vmax;
     height: max-content;
-    background-color: #555;
-    color: #f2f2f2;
+    background-color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.textPrimary};
     filter: drop-shadow(1px 5px 10px black);
     border: 1px solid black;
     border-radius: 5px;
@@ -26,7 +28,7 @@ export const AppBackground = styled.div`
     row-gap: 1rem;
 
     button {
-      background-color: #ddd;
+      background-color: ${(props) => props.theme.colors.tertiary};
       border: 1px solid black;
       border-radius: 5px;
       padding: 1rem;
@@ -34,7 +36,7 @@ export const AppBackground = styled.div`
 
       &:hover {
         cursor: pointer;
-        background-color: #bbb;
+        background-color: ${(props) => props.theme.colors.tertiaryDarkened};
       }
 
       a {
