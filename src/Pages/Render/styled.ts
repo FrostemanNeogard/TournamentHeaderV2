@@ -6,7 +6,6 @@ export const PlayerContainer = styled.section`
   overflow: hidden;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  color: red;
   background: none;
   justify-items: center;
   padding: 0.5rem 0;
@@ -14,7 +13,6 @@ export const PlayerContainer = styled.section`
 `;
 
 export const CenterText = styled.h1`
-  /* background-color: rgba(0, 0, 0, 0.7); */
   color: white;
   font-weight: 600;
   font-size: 22pt;
