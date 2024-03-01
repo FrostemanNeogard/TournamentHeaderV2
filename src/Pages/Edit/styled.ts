@@ -6,25 +6,6 @@ export const EditorHeading = styled.h1`
 `;
 
 export const Editor = styled.main`
-  label {
-    text-align: left;
-    align-self: center;
-    padding: 0.5rem;
-  }
-
-  input {
-    border-radius: 5px;
-    padding: 0.5rem;
-    width: 100%;
-    &[type="number"] {
-      width: 5rem;
-      &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-    }
-  }
-
   button {
     height: 100%;
     padding: 0 1rem !important;

@@ -42,5 +42,25 @@ export const AppBackground = styled.div`
         text-decoration: none;
       }
     }
+
+    label {
+      text-align: left;
+      padding: 0.3rem 0;
+      width: 100%;
+      align-self: center;
+    }
+
+    input {
+      border-radius: 5px;
+      padding: 0.5rem;
+      width: 100%;
+      &[type="number"] {
+        width: 5rem;
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+    }
   }
 `;
