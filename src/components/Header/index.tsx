@@ -7,7 +7,8 @@ export const Header = () => {
   return (
     <S.Header>
       <nav>
-        <button onClick={() => navigate("")}>HOME</button>
+        <button onClick={() => navigate("")}>Home</button>
+        <button onClick={() => navigate("help")}>How to use</button>
       </nav>
     </S.Header>
   );
