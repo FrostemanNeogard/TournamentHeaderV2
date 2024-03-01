@@ -21,5 +21,8 @@ export const Theme = {
 
     cancel: "#f00",
     cancelDarkened: "#d00",
+
+    link: "#00e0e0",
+    linkDarkened: "#00d0d0",
   },
 };
