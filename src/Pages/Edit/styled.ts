@@ -24,6 +24,11 @@ export const Editor = styled.main`
       }
     }
   }
+
+  button {
+    height: 100%;
+    padding: 0 1rem !important;
+  }
 `;
 
 export const PlayerHeading = styled.h1`
@@ -63,9 +68,9 @@ export const HorizontalDivider = styled.div`
 `;
 
 export const UpdateButton = styled.button`
-  background-color: #0f0;
+  background-color: #0d0 !important;
   &:hover {
-    background-color: #0d0;
+    background-color: #0c0 !important;
   }
 `;
 
@@ -76,24 +81,19 @@ export const ScoreButtons = styled.div`
   justify-content: center;
   column-gap: inherit;
   width: 100%;
-
-  button {
-    height: 2rem;
-    padding: 0 1rem;
-  }
 `;
 
 export const IncrementButton = styled.button`
-  background-color: #0f0;
+  background-color: #0d0 !important;
   &:hover {
-    background-color: #0d0;
+    background-color: #0c0 !important;
   }
 `;
 
 export const DecrementButton = styled.button`
-  background-color: #f00;
+  background-color: #d00 !important;
   &:hover {
-    background-color: #d00;
+    background-color: #c00 !important;
   }
 `;
 

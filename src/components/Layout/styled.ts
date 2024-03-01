@@ -26,10 +26,20 @@ export const AppBackground = styled.div`
     row-gap: 1rem;
 
     button {
+      background-color: #ddd;
       border: 1px solid black;
+      border-radius: 5px;
+      padding: 1rem;
+      text-decoration: none;
 
       &:hover {
         cursor: pointer;
+        background-color: #bbb;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
       }
     }
   }
