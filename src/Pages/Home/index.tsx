@@ -32,6 +32,14 @@ export const HomePage = () => {
         setErrorText("A header already exists with the given ID.");
         return;
       } else {
+        const isIdValid = validateId(headerId);
+        if (!isIdValid) {
+          setErrorText(
+            "Header ID may only contain letters, numbers, spaces, dashes, and underscores."
+          );
+          return;
+        }
+
         const docRef = doc(db, "tournament-sets", headerId);
         const emptyDocumentData: SetData = {
           playerOne: {
@@ -141,4 +149,11 @@ async function checkIfDocumentIdExists(documentId: string) {
   } else {
     return false;
   }
+}
+
+function validateId(id: string): boolean {
+  const idRegex = /^[a-zA-Z0-9-_ ]+$/;
+  const isValid = idRegex.test(id);
+  console.log(`is ${id} valid? ${isValid}`);
+  return isValid;
 }
