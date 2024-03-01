@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const AppBackground = styled.div`
   background-color: ${(props) => props.theme.colors.secondary};
   display: grid;
-  color: ${(props) => props.theme.colors.textPrimary};
+  color: ${(props) => props.theme.colors.text.primary};
   grid-template-rows: max-content auto max-content;
   min-height: 100vh;
 
@@ -18,7 +18,7 @@ export const AppBackground = styled.div`
 
   button {
     background-color: ${(props) => props.theme.colors.tertiary};
-    color: ${(props) => props.theme.colors.textSecondary};
+    color: ${(props) => props.theme.colors.text.secondary};
     border: 1px solid black;
     border-radius: 5px;
     padding: 1rem;

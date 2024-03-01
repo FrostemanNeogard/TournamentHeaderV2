@@ -18,7 +18,7 @@ export const Popup = styled.div<{ $animationDuration?: number }>`
   right: 0;
   margin: 20px;
   background-color: ${(props) => props.theme.colors.tertiary};
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${(props) => props.theme.colors.text.secondary};
   border-radius: 5px;
   padding: 1rem 2rem;
   font-size: 1.5rem;
