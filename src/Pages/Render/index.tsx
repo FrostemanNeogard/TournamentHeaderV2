@@ -5,8 +5,12 @@ import { db } from "src/util/Firebase";
 import * as S from "./styled";
 import { Link, useSearchParams } from "react-router-dom";
 
-const PlayerCard = (props: { playerData: PlayerData; reversed?: boolean }) => {
-  const { playerData, reversed } = props;
+const PlayerCard = (props: {
+  playerData: PlayerData;
+  reversed?: boolean;
+  theme: string;
+}) => {
+  const { playerData, reversed = false, theme } = props;
 
   const PlayerDetails = () => {
     if (reversed) {
@@ -27,7 +31,7 @@ const PlayerCard = (props: { playerData: PlayerData; reversed?: boolean }) => {
   };
 
   return (
-    <S.Player>
+    <S.Player $theme={theme}>
       <h2>{playerData.score}</h2>
       <PlayerDetails />
     </S.Player>
@@ -64,10 +68,19 @@ export const TournamentHeader = () => {
   return (
     <S.PlayerContainer $theme={theme ?? "tekken8"}>
       {value && (
-        <PlayerCard playerData={reversed ? playerTwo : playerOne} reversed />
+        <PlayerCard
+          theme={theme ?? "tekken8"}
+          playerData={reversed ? playerTwo : playerOne}
+          reversed
+        />
       )}
-      <S.CenterText>{centerText}</S.CenterText>
-      {value && <PlayerCard playerData={reversed ? playerOne : playerTwo} />}
+      <S.CenterText $theme={theme ?? "tekken8"}>{centerText}</S.CenterText>
+      {value && (
+        <PlayerCard
+          theme={theme ?? "tekken8"}
+          playerData={reversed ? playerOne : playerTwo}
+        />
+      )}
     </S.PlayerContainer>
   );
 };

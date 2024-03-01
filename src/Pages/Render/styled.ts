@@ -12,7 +12,7 @@ export const PlayerContainer = styled.section<{ $theme: string }>`
   position: relative;
 `;
 
-export const CenterText = styled.h1`
+export const CenterText = styled.h1<{ $theme: string }>`
   color: white;
   font-weight: 600;
   font-size: 22pt;
@@ -22,9 +22,15 @@ export const CenterText = styled.h1`
   left: 50%;
   transform: translateX(-50%);
   top: 3px;
+
+  ${(props) =>
+    props.$theme == "tekken7" &&
+    `
+    top: 25px !important;
+  `}
 `;
 
-export const Player = styled.article`
+export const Player = styled.article<{ $theme: string }>`
   background-color: rgba(0, 0, 0, 0.7);
   font-size: 33pt;
   display: grid;
@@ -52,7 +58,21 @@ export const Player = styled.article`
     }
 
     left: 160px;
+
+    ${(props) =>
+      props.$theme == "tekken7" &&
+      `
+      top: 12px !important;
+      left: 260px;
+    `}
   }
+
+  ${(props) =>
+    props.$theme == "tekken7" &&
+    `
+    top: 12px !important;
+    right: 260px;
+  `}
 `;
 
 export const Error = styled.div`
