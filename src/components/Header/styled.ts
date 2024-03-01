@@ -4,16 +4,22 @@ export const Header = styled.header`
   background-color: ${(props) => props.theme.colors.primary};
 
   nav {
-    padding: 2rem 10vmax;
+    padding: 1.5rem 10vmax;
     display: flex;
-    column-gap: 1rem;
+    column-gap: 4rem;
   }
 
   button {
-    background-color: ${(props) => props.theme.colors.tertiary};
+    font-size: 2rem;
+    padding: 0;
+    background: none;
+    border: none;
+    color: ${(props) => props.theme.colors.text.primary};
 
     &:hover {
       cursor: pointer;
+      background: none;
+      color: ${(props) => props.theme.colors.text.primaryDarkened};
     }
   }
 `;
