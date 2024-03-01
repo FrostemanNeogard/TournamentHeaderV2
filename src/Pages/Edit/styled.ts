@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const EditorHeading = styled.h1`
   text-align: center;
-  font-size: 22pt;
+  font-size: 2rem;
 `;
 
 export const Editor = styled.main`
@@ -15,7 +15,7 @@ export const Editor = styled.main`
 export const PlayerHeading = styled.h1`
   text-align: center;
   text-transform: uppercase;
-  font-size: 120%;
+  font-size: 1.2rem;
   font-weight: 500;
 `;
 
