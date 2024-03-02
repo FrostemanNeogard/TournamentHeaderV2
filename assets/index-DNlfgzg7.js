@@ -1938,9 +1938,10 @@ PERFORMANCE OF THIS SOFTWARE.
   padding: 0.5rem 0;
   position: relative;
 `,ux=ee.h1`
+  /* background-color: black; */
   color: white;
   font-weight: 600;
-  font-size: 22pt;
+  font-size: 32pt;
   display: flex;
   align-items: center;
   position: absolute;
@@ -1953,16 +1954,16 @@ PERFORMANCE OF THIS SOFTWARE.
   `}
 `,cx=ee.article`
   background-color: rgba(0, 0, 0, 0.7);
-  font-size: 33pt;
+  font-size: 45pt;
   display: grid;
   grid-template-columns: 1fr auto;
   color: white;
   align-items: center;
   padding: 0.5rem 2rem;
   position: absolute;
-  width: 555px;
-  right: 160px;
-  top: 6px;
+  width: 655px;
+  right: 260px;
+  top: 10px;
   h1 {
     color: white;
     display: flex;
@@ -1978,7 +1979,7 @@ PERFORMANCE OF THIS SOFTWARE.
       grid-row: 1;
     }
 
-    left: 160px;
+    left: 260px;
 
     ${t=>t.$theme=="tekken7"&&`
       top: 12px !important;
