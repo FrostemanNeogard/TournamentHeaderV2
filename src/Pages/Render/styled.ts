@@ -38,11 +38,11 @@ export const Player = styled.article<{ $theme: string }>`
   grid-template-columns: 1fr auto;
   color: white;
   align-items: center;
-  padding: 0.5rem 2rem;
+  padding: 1.15rem 2rem;
   position: absolute;
   width: 655px;
   right: 260px;
-  top: 10px;
+  top: 0px;
   h1 {
     color: white;
     display: flex;
